@@ -1,0 +1,22 @@
+{%extends "layout.html"}
+{%block title %} 
+Django project 
+{% endblock %} 
+{%block content %}
+
+<h1 class="text-center mt-4">Welcome to Mahima Django Project</h1>
+
+<h2> {%if form.instance.pk %}
+   Edit tweet 
+   {%else %} 
+   Create new tweet
+  {% endif %}
+  <form method = "post" enctype = "multipart/form-data" class = "form"> <!-- multipart since we have images also.-->
+    {% csrf_token %} <!-- compulsory to inject csrf in forms.-->
+    {{ form.as_p}} <!-- .as_p lets form render as paragraph. we can also write form only.-->
+    <button class="btn btn-warning" type = "submit">Submit</button>
+  </form>
+  <a href = "{%url 'tweet_list'%}"> Back to tweet</a>
+</h2>
+
+{%endblock %}
